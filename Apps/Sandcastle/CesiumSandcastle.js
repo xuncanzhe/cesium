@@ -367,6 +367,7 @@ require({
         }
         // make a copy of the options, JSHint modifies the object it's given
         var options = JSON.parse(JSON.stringify(sandcastleJsHintOptions));
+        /*eslint-disable new-cap*/
         if (!JSHINT(getScriptFromEditor(false), options)) {
             var hints = JSHINT.errors;
             for (i = 0, len = hints.length; i < len; ++i) {
@@ -378,6 +379,7 @@ require({
                 }
             }
         }
+        /*eslint-enable new-cap*/
     }
 
     function scheduleHint() {
@@ -883,6 +885,8 @@ require({
         scheduleHintNoChange();
     });
 
+    var searchContainer;
+
     function hideSearchContainer() {
         if (dom.byId('searchContainer')) {
             var innerPanel = registry.byId('innerPanel');
@@ -1289,7 +1293,6 @@ require({
         });
     }
 
-    var searchContainer;
     when(promise).then(function() {
         dom.byId('searchDemos').appendChild(galleryErrorMsg);
         searchContainer = registry.byId('searchContainer');
