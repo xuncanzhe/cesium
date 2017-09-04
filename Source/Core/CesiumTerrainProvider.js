@@ -1,4 +1,3 @@
-/*global define*/
 define([
         '../ThirdParty/Uri',
         '../ThirdParty/when',
@@ -8,7 +7,6 @@ define([
         './defaultValue',
         './defined',
         './defineProperties',
-        './deprecationWarning',
         './DeveloperError',
         './Event',
         './GeographicTilingScheme',
@@ -34,7 +32,6 @@ define([
         defaultValue,
         defined,
         defineProperties,
-        deprecationWarning,
         DeveloperError,
         Event,
         GeographicTilingScheme,
@@ -530,15 +527,6 @@ define([
         }
         if (this._requestWaterMask && this._hasWaterMask) {
             extensionList.push('watermask');
-        }
-
-        if (typeof request === 'boolean') {
-            deprecationWarning('throttleRequests', 'The throttleRequest parameter for requestTileGeometry was deprecated in Cesium 1.35.  It will be removed in 1.37.');
-            request = new Request({
-                throttle : request,
-                throttleByServer : request,
-                type : RequestType.TERRAIN
-            });
         }
 
         var promise = loadArrayBuffer(url, getRequestHeader(extensionList), request);
